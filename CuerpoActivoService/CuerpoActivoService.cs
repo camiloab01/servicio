@@ -20,7 +20,7 @@ namespace CuerpoActivoService
         private Thread mainThread;
         private bool isRunning = true;
         protected IDisposable _signalRApplication = null;
-        private String uri = "http://dev-cuerpoactivo.lumenup.net/rest/reminder";
+        private String uri = "http://cuerpoactivo.devdoubledigit.com/rest/reminder";
         private int lastReminderNotifiedId;
         private int timeToCheck;
 
@@ -32,7 +32,7 @@ namespace CuerpoActivoService
             string ip = ConfigurationManager.AppSettings["IPAddress"].ToString();
             timeToCheck = Int32.Parse(ConfigurationManager.AppSettings["CheckReminder"]);
 
-            _signalRApplication = WebApp.Start("http:\\localhost:8084"); 
+            _signalRApplication = WebApp.Start<Startup>(url: "http://+:8084"); 
 
             // Start main thread
             mainThread = new Thread(new ParameterizedThreadStart(this.RunService));
